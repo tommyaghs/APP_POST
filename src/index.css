@@ -13,3 +13,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: none;
+  z-index: 999;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+.no-hover-effect {
+  transition: none;
+  background-color: transparent !important;
+  border: none !important;
+  color: #000000 !important;
+}
