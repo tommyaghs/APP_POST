@@ -11,6 +11,7 @@ import PostPage from './pages/PostPage';
 function App() {
   return (
     <Router>
+          <div className="background"></div>
           <NavbarComponent />
           <Routes>
             <Route path="/counter" element={<Counter />} />

@@ -1,13 +1,14 @@
 //interfacce Post
 export interface Post {
-  userId: number;
   id: number;
+  userId: number; 
   title: string;
   body: string;
+  comments?: Comment[]
 }
-
 export interface CardProps {
   post: Post;
+  children?: React.ReactNode;
 }
 
 export interface PaginationProps {

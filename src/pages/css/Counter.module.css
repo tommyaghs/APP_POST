@@ -19,7 +19,7 @@
   padding-right: 16px;
   margin-top: 2px;
   font-family: 'Courier New', Courier, monospace;
-  color: black; /* Cambia il colore del testo in nero */
+  color: black; 
 }
 
 .button {
@@ -30,21 +30,21 @@
   padding-right: 12px;
   outline: none;
   border: 2px solid transparent;
-  color: gray; /* Cambia il colore del testo in grigio */
+  color: black;
   padding-bottom: 4px;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.1); /* Cambia il colore di sfondo in grigio (rgba(0, 0, 0, 0.1)) */
+  background-color: rgba(0, 0, 0, 0.1); 
   border-radius: 2px;
   transition: all 0.15s;
 }
 
 .button:hover,
 .button:focus {
-  border: 2px solid rgba(0, 0, 0, 0.4); /* Cambia il colore del bordo in grigio */
+  border: 2px solid rgba(0, 0, 0, 0.4);
 }
 
 .button:active {
-  background-color: rgba(0, 0, 0, 0.2); /* Cambia il colore di sfondo al clic in grigio (rgba(0, 0, 0, 0.2)) */
+  background-color: rgba(0, 0, 0, 0.2); 
 }
 
 .asyncButton {
@@ -54,7 +54,7 @@
 
 .asyncButton:after {
   content: '';
-  background-color: rgba(0, 0, 0, 0.15); /* Cambia il colore di sfondo in grigio (rgba(0, 0, 0, 0.15)) */
+  background-color: rgba(0, 0, 0, 0.15); 
   display: block;
   position: absolute;
   width: 100%;

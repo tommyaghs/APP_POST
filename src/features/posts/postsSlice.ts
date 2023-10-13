@@ -1,16 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchPostsApi } from './postsAPI';
+import axios from 'axios';
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const data = await fetchPostsApi();
-  return data;
+interface IpropApi {
+  start: number;
+  limit: number;
+  title?: string;
+}
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (props: IpropApi, thunkAPI) => {
+  try {
+    const linkApi = `https://jsonplaceholder.typicode.com/posts?_start=${props.start}&_limit=${props.limit}${props.title ? 
+    `&title=${props.title}` : ''}`;
+    const response = await axios.get(linkApi);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue('Errore nel fetch dei post');
+  }
 });
-
 
 const postsSlice = createSlice({
   name: 'posts',
-  initialState: { data: [], status: 'idle', error: null as string | null },
-  reducers: {},
+  initialState: { data: [], status: 'idle', error: null as string | null | undefined },
+  reducers: {
+    
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPosts.pending, (state) => {
@@ -22,7 +35,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.error.message as string | null;
+        state.error = action.payload as string | null;
       });
   },
 });

@@ -2,3 +2,12 @@
     color: black;
     text-decoration: none; 
   }
+
+  /* Stile per lo stato "active" del button (cliccato) */
+.btn.btn-outline-transparent:active {
+  background-color: transparent; /* Mantieni il fondo trasparente in stato "active" */
+  border: none; /* Rimuovi il bordo in stato "active" */
+  color: #000; /* Mantieni il colore del testo in stato "active" */
+  box-shadow: none; /* Rimuovi l'ombra in stato "active" */
+  transform: none; /* Rimuovi la trasformazione in stato "active" */
+}

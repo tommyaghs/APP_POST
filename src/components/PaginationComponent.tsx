@@ -7,19 +7,19 @@ function PaginationComponent({ currentPage, totalPages, handlePageChange }: Pagi
       <nav>
         <ul className="pagination ">
           <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-            <button className="btn pointer btn-light" onClick={() => handlePageChange(currentPage - 1)}>
+            <button className="btn pointer glass-btn" onClick={() => handlePageChange(currentPage - 1)}>
               Indietro
             </button>
           </li>
           {Array.from({ length: totalPages }, (_, index) => (
             <li key={index} className={`page-item ${index + 1 === currentPage ? 'active' : ''}`}>
-              <button className="btn btn-dark" onClick={() => handlePageChange(index + 1)}>
+              <button className="btn glass-btn" onClick={() => handlePageChange(index + 1)}>
                 {index + 1}
               </button>
             </li>
           ))}
           <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-            <button className="btn pointer btn-light" onClick={() => handlePageChange(currentPage + 1)}>
+            <button className="btn pointer glass-btn" onClick={() => handlePageChange(currentPage + 1)}>
               Avanti
             </button>
           </li>

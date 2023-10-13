@@ -3,6 +3,8 @@ import counterReducer from '../features/counter/counterSlice';
 import postsReducer from '../features/posts/postsSlice';
 import searchReducer from '../features/search/searchSlice';
 import openPostReducer from '../features/posts/openPostSlice'; 
+import commentsReducer from '../features/comments/commentsSlice';
+import favouritesReducer from '../features/favourites/favouritesSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     posts: postsReducer,
     search: searchReducer,
     openPost: openPostReducer,
+    favourites: favouritesReducer,
+    comments: commentsReducer,
   },
 });
 

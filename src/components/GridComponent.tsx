@@ -7,7 +7,7 @@ import { PropagateLoader } from 'react-spinners';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CardComponent from './CardComponent';
-import PaginationComponent from './PaginationComponent';
+import PaginationComponent from './PaginationComponent';  // Parte relativa alla paginazione
 
 function GridComponent() {
   const dispatch: AppDispatch = useDispatch();
@@ -20,18 +20,18 @@ function GridComponent() {
     setItemsPerPage(parseInt(event.target.value));
     setCurrentPage(1);
   };
-
+  // search
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, [dispatch]);
+    dispatch(fetchPosts({ start: 0, limit: 50, title: searchQuery }));
+  }, [dispatch, searchQuery]);
 
   const filteredPosts = searchQuery ? posts.filter((post: Post) => post.title.includes(searchQuery)) : posts;
 
-  //inizio e fine della pagina
+  // Inizio e fine pagina
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // per filtrare i post
+  // Per filtrare i post
   const postsToShow = filteredPosts.slice(startIndex, endIndex);
   const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
   const handlePageChange = (newPage: number) => {
@@ -39,32 +39,41 @@ function GridComponent() {
   };
 
   return (
-    <div className='mt-5'>
-      <div className='row'>
-        <select className='mb-5 col-lg-2' value={itemsPerPage} onChange={handleChangeItemsPerPage}>
-          <option value={5}>5 elementi per pagina</option>
-          <option value={10}>10 elementi per pagina</option>
-          <option value={20}>20 elementi per pagina</option>
+<div className='mt-5'>
+  <div className='container'>
+    <div className='row justify-content-end mt-5'>
+          <h2 className='text-center'>Gli ultimi Post</h2>
+      <div className='col-lg-2'>
+        <select className='mb-4 form-select w-100 custom-dropdown' value={itemsPerPage} onChange={handleChangeItemsPerPage}>
+          <option value={5}>5 elementi</option>
+          <option value={10}>10 elementi</option>
+          <option value={20}>20 elementi</option>
         </select>
-        <h1 className='col-lg-8 text-center me-2 mb-3'>Gli ultimi Post</h1>
       </div>
-
-      {status === 'loading' ? (<PropagateLoader className='text-center' color="rgba(0, 0, 0, 1)" />
-      ) : status === 'failed' ? (<p>Error: {error}</p>
-      ) : (<Row xs={1} md={5} className="g-4">
+    </div>
+  </div>
+  
+      {
+    status === 'loading' ? (
+      <PropagateLoader className='text-center' color="rgba(0, 0, 0, 1)" />
+    ) : status === 'failed' ? (
+      <p>Error: {error}</p>
+    ) : (
+      <Row xs={1} md={5} className="g-4 ms-2 me-2">
         {postsToShow.map((post: Post) => (
           <Col key={post.id}>
             <CardComponent post={post} />
           </Col>
         ))}
       </Row>
-      )}
-      <PaginationComponent
-        currentPage={currentPage}
-        totalPages={totalPages}
-        handlePageChange={handlePageChange}
-      />
-    </div>
+    )
+  }
+  <PaginationComponent
+    currentPage={currentPage}
+    totalPages={totalPages}
+    handlePageChange={handlePageChange}
+  />
+    </div >
   );
 }
 

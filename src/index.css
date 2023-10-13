@@ -1,4 +1,6 @@
-
+* {
+  font-family: 'Roboto', sans-serif;
+}
 
 body {
   margin: 0;
@@ -7,6 +9,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background: rgb(169, 34, 195);
+  background: linear-gradient(0deg, rgba(169, 34, 195, 0.5803571428571428) 0%, rgba(62, 45, 253, 0.4823179271708683) 100%); */
 }
 
 code {
@@ -33,4 +37,85 @@ code {
   background-color: transparent !important;
   border: none !important;
   color: #000000 !important;
+}
+
+.no-back {
+  background-color: none;
+}
+
+
+.transparent-input {
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  color: #000;
+  padding: 8px;
+}
+
+
+.transparent-input:focus {
+  background: rgba(255, 255, 255, 0.5);
+  /* Mantieni l'opacità in stato "focus" */
+  border: none;
+  /* Rimuovi il bordo in stato "focus" */
+  color: #000;
+  /* Mantieni il colore del testo in stato "focus" */
+}
+
+
+.glass {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-btn {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(13.7px);
+  -webkit-backdrop-filter: blur(13.7px);
+}
+
+.custom-dropdown {
+  background-color: transparent;
+  /* Imposta il background del select su trasparente */
+  color: #000;
+  /* Cambia il colore del testo (se necessario) */
+  border: none;
+  /* Rimuovi il bordo (se necessario) */
+}
+
+option {
+  border: 1px solid #fff;
+  background-color: rgba(255, 255, 255, .5);
+  padding: 5px;
+}
+
+.logo {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+}
+
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+	height: 150%;
+  background-color: #9292ff;
+  opacity: 0.8;
+  background: linear-gradient(135deg, #9dacff55 25%, transparent 25%) -40px 0/ 80px 80px, linear-gradient(225deg, #9dacff 25%, transparent 25%) -40px 0/ 80px 80px, linear-gradient(315deg, #9dacff55 25%, transparent 25%) 0px 0/ 80px 80px, linear-gradient(45deg, #9dacff 25%, #9292ff 25%) 0px 0/ 80px 80px;
+  background-repeat: repeat;
+  z-index: -1;
+  pointer-events: none;
 }
