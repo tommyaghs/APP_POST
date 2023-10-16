@@ -7,7 +7,7 @@ import { PropagateLoader } from 'react-spinners';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import CardComponent from './CardComponent';
-import PaginationComponent from './PaginationComponent';  // Parte relativa alla paginazione
+import PaginationComponent from './PaginationComponent'; 
 
 function GridComponent() {
   const dispatch: AppDispatch = useDispatch();
