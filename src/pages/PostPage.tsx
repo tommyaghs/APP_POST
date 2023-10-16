@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { closePost } from '../features/posts/openPostSlice';
+import { closePost } from '../features/posts/postsSlice';
 import { useDispatch } from 'react-redux';
 import { RootState } from '../app/store';
 import { Post } from '../app/interfaces';
 import { Link } from 'react-router-dom';
 import CommentComponent from '../components/commentComponent';
 const PostPage = () => {
-  const selectedPost = useSelector((state: RootState) => state.openPost) as Post | null;
+  const selectedPost = useSelector((state: RootState) => state.posts.openedPost) as Post | null;
   const dispatch = useDispatch();
 
   if (selectedPost) {

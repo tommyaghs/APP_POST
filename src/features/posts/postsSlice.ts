@@ -20,9 +20,14 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (props: Ipr
 
 const postsSlice = createSlice({
   name: 'posts',
-  initialState: { data: [], status: 'idle', error: null as string | null | undefined },
+  initialState: { data: [], status: 'idle', error: null as string | null | undefined,  openedPost: null as string | null},
   reducers: {
-    
+    openPost: (state, action) => {
+      state.openedPost = action.payload;
+    },
+    closePost: (state) => {
+      state.openedPost = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -40,4 +45,6 @@ const postsSlice = createSlice({
   },
 });
 
+
+export const { openPost, closePost } = postsSlice.actions;
 export default postsSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { openPost } from '../features/posts/openPostSlice';
+import { openPost } from '../features/posts/postsSlice';
 import { addToFavourites, removeFromFavourites } from '../features/favourites/favouritesSlice';
 import { CardProps } from '../app/interfaces';
 import { RootState } from '../app/store';
