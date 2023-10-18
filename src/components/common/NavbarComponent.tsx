@@ -38,7 +38,7 @@ function NavbarComponent() {
             <Link to="/counter" className='custom-link mt-2 me-3'>Counter</Link>
           </Nav>
           <div className='logo'>
-         <Link to="/"><img  src={logo} alt="Logo" style={{ maxWidth: '150px' }} /></Link> 
+         <Link to="/" className="logo-animation"><img src={logo} alt="Logo" style={{ maxWidth: '150px' }} /></Link> 
           </div>
           <div className='d-flex ms-auto'>
             <Link to='/favourites' className='text-danger mx-5 mt-2 pointer'>
@@ -60,7 +60,6 @@ function NavbarComponent() {
         </Navbar.Collapse>
       </Navbar>
     </div>
-
   );
 }
 

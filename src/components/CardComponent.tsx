@@ -7,7 +7,6 @@ import { CardProps } from '../app/interfaces';
 import { RootState } from '../app/store';
 import { IPost } from '../pages/Favourites';
 import { Link } from 'react-router-dom';
-import "./cardComponent.css"
 
 const CardComponent: React.FC<CardProps> = ({ post }) => {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const CardComponent: React.FC<CardProps> = ({ post }) => {
   };
 
   return (
-    <Card className='glass h-100 rounded' style={{ width: '18rem' }}>
+    <Card className='glass h-100 rounded card-animation card' style={{ width: '18rem' }}>
       <Card.Body className='d-flex flex-column justify-content-between'>
         <Card.Title className='text-center'>{post.title}</Card.Title>
         <Card.Text className='text-center'>{post.body}</Card.Text>

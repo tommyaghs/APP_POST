@@ -16,7 +16,6 @@ const Favourites = () => {
   const dispatch = useDispatch();
   const favouritePosts: IPost[] = useSelector((state: RootState) => state.favourites.items);
 
-
   const handleRemoveFromFavorites = (post: IPost) => {
     dispatch(removeFromFavourites({ id: post.id }));
   };
@@ -25,13 +24,21 @@ const Favourites = () => {
     <div className='mt-5 text-center'>
       <h2>Post Preferiti</h2>
       <div className='row g-4 ms-2 me-2'>
-        <Row xs={1} md={5} className="g-4 ms-2 me-2">
-          {favouritePosts.map((post) => (
-            <Col key={post.id} post={post}>
-              <CardComponent post={post}><button onClick={() => handleRemoveFromFavorites(post)}>Remove from Favorites</button></CardComponent>
-            </Col>
-          ))}
-        </Row>
+        {favouritePosts.length === 0 ? (
+          <h3 className='mt-5 pt-5'>Nessun post aggiunto ai preferiti</h3>
+        ) : (
+          <Row xs={1} md={5} className="g-4 ms-2 me-2">
+            {favouritePosts.map((post) => (
+              <Col key={post.id} post={post}>
+                <CardComponent post={post}>
+                  <button onClick={() => handleRemoveFromFavorites(post)}>
+                    Remove from Favorites
+                  </button>
+                </CardComponent>
+              </Col>
+            ))}
+          </Row>
+        )}
       </div>
     </div>
   );

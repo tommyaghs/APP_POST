@@ -11,15 +11,15 @@ import PostPage from './pages/PostPage';
 function App() {
   return (
     <Router>
-          <div className="background"></div>
-          <NavbarComponent />
-          <Routes>
-            <Route path="/counter" element={<Counter />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="/favourites" element={<Favourites />} />
-            <Route path="/post/:postId" element={<PostPage/>} />
-          </Routes>
-          <FooterComponent/>
+      {/* <div className="background"></div>  */}
+      <NavbarComponent />
+      <Routes>
+        <Route path="/counter" element={<Counter />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/post/:postId" element={<PostPage />} />
+      </Routes>
+      <FooterComponent />
     </Router>
   );
 }

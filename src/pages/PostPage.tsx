@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { closePost } from '../features/posts/postsSlice';
 import { useDispatch } from 'react-redux';
-import { RootState } from '../app/store';
-import { Post } from '../app/interfaces';
+import { AppDispatch, RootState } from '../app/store';
+import { Post, UserData } from '../app/interfaces';
 import { Link } from 'react-router-dom';
 import CommentComponent from '../components/commentComponent';
+import { fetchUserById } from '../features/users/usersSlice';
+
 const PostPage = () => {
+  const userData = useSelector((state: RootState) => state.users.userData) as UserData | null;
+  const userStatus = useSelector((state: RootState) => state.users.status);
   const selectedPost = useSelector((state: RootState) => state.posts.openedPost) as Post | null;
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectedPost) {
+      dispatch(fetchUserById(selectedPost.userId));
+    }
+  }, [dispatch, selectedPost]);
 
   if (selectedPost) {
     return (
-      <section>
-        <div className="container my-5 py-5">
+      <section className='mt-5'>
+        <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-12 col-lg-10 col-xl-8">
               <div className="card glass">
+                <div className='d-flex justify-content-end mt-3'>
+                  <Link to='/'>
+                    <button className='mx-5 btn btn-outline-white no-hover-effect' onClick={() => {
+                      dispatch(closePost());
+                    }}>
+                      Chiudi Post
+                    </button>
+
+                  </Link>
+                </div>
                 <div className="card-body">
                   <div className="d-flex align-items-center">
                     <img
@@ -29,6 +49,9 @@ const PostPage = () => {
                     <div>
                       <h6 className="fw-bold text-dark mb-1">{selectedPost.title}</h6>
                       <p className="text-muted small mb-0">{selectedPost.id}</p>
+                      {userData && userStatus === 'succeeded' && (
+                        <p className="text-muted small mb-0">User: {userData.name}</p>
+                      )}
                     </div>
                   </div>
                   <p className="mt-3 mb-4 pb-2">
@@ -42,14 +65,6 @@ const PostPage = () => {
             </div>
           </div>
         </div>
-        <div className='d-flex justify-content-end mt-3'>
-          <Link to='/'>
-            <button className='mx-5 btn btn-outline-dark' onClick={() => {
-              dispatch(closePost());
-            }}>
-              Chiudi Post
-            </button>
-          </Link></div>
       </section>
     );
   };

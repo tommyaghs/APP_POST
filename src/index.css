@@ -9,8 +9,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: rgb(169, 34, 195);
-  background: linear-gradient(0deg, rgba(169, 34, 195, 0.5803571428571428) 0%, rgba(62, 45, 253, 0.4823179271708683) 100%); */
 }
 
 code {
@@ -111,11 +109,102 @@ option {
   top: 0;
   left: 0;
   width: 100%;
-	height: 150%;
+	height: 250%;
   background-color: #9292ff;
   opacity: 0.8;
   background: linear-gradient(135deg, #9dacff55 25%, transparent 25%) -40px 0/ 80px 80px, linear-gradient(225deg, #9dacff 25%, transparent 25%) -40px 0/ 80px 80px, linear-gradient(315deg, #9dacff55 25%, transparent 25%) 0px 0/ 80px 80px, linear-gradient(45deg, #9dacff 25%, #9292ff 25%) 0px 0/ 80px 80px;
   background-repeat: repeat;
   z-index: -1;
   pointer-events: none;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.card:hover {
+  transform: scale(1); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+/* card transitions */
+
+.card-animation {
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  opacity: 0;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+    visibility: hidden;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+    display: block;
+    position: relative;
+    z-index: auto;
+    height: auto;
+    width: auto;
+    overflow: visible;
+    padding: initial;
+    margin: initial;
+    border: initial;
+    border-radius: initial;
+    box-shadow: initial;
+    background: initial;
+    visibility: visible;
+  }
+}
+
+.card.card-animation {
+  transform: translateX(-100%);
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+.text-animation {
+  animation: easeIn 1s ease-in-out forwards;
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+@keyframes easeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* paginationComponent */
+.current-page-button {
+    background: rgba(16, 16, 16, 0.271);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.219);
 }

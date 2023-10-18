@@ -1,22 +1,34 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-type CommentsState = { [postId: number]: string[] };
-
-const initialState: CommentsState = {};
-
+const fetchCommentsForPost = createAsyncThunk('comments/fetchCommentsForPost', async (postId: number, thunkAPI) => {
+  try {
+    const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue({ errorMessage: 'Errore nel fetch dei post' });
+  }
+});
 const commentsSlice = createSlice({
   name: 'comments',
-  initialState,
-  reducers: {
-    addComment: (state, action: PayloadAction<{ postId: number; text: string }>) => {
-      const { postId, text } = action.payload;
-      if (!state[postId]) {
-        state[postId] = [];
-      }
-      state[postId].push(text);
-    },
+  initialState: { comments: [], status: 'idle',  error: null as string | null },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchCommentsForPost.pending, (state) => {
+        state.status = 'loading';
+        state.error = null; 
+      })
+      .addCase(fetchCommentsForPost.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.comments = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchCommentsForPost.rejected, (state, action) => {
+        state.status = 'failed';
+      });
   },
 });
 
-export const { addComment } = commentsSlice.actions;
+export { fetchCommentsForPost };
 export default commentsSlice.reducer;

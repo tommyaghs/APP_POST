@@ -20,7 +20,7 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (props: Ipr
 
 const postsSlice = createSlice({
   name: 'posts',
-  initialState: { data: [], status: 'idle', error: null as string | null | undefined,  openedPost: null as string | null},
+  initialState: { data: [], status: 'idle', error: null as string | null ,  openedPost: null as string | null},
   reducers: {
     openPost: (state, action) => {
       state.openedPost = action.payload;
@@ -40,7 +40,6 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload as string | null;
       });
   },
 });
